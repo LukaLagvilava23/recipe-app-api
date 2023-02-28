@@ -23,9 +23,9 @@ class PublicUserApiTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-    
+
     def test_create_user_success(self):
-        """Tests creating a user is successful."""
+        """Test creating a user is successful."""
         payload = {
             'email': 'test@example.com',
             'password': 'testpass123',
@@ -49,7 +49,7 @@ class PublicUserApiTests(TestCase):
         res = self.client.post(CREATE_USER_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-    
+
     def test_password_too_short_error(self):
         """Test an error is returned if password less than 5 characters."""
         payload = {
@@ -94,7 +94,7 @@ class PublicUserApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_create_token_blank_password(self):
-        """Test posting a bad password returns an error."""
+        """Test posting a blank password returns an error."""
         payload = {'email': 'test@example.com', 'password': ''}
         res = self.client.post(TOKEN_URL, payload)
 
