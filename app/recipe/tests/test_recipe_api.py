@@ -144,7 +144,7 @@ class PrivateRecipeApiTests(TestCase):
             link='https://example.com/recipe.pdf',
             description='Sample recipe description',
         )
-        
+
         payload = {
             'title': 'New recipe title',
             'link': 'https://example.com/new-recipe.pdf',
@@ -193,4 +193,3 @@ class PrivateRecipeApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue(Recipe.objects.filter(id=recipe.id).exists())
-    
