@@ -46,7 +46,7 @@ def create_recipe(user, **params):
 
 
 def create_user(**params):
-    """Create and return a new user. """
+    """Create and return a new user."""
     return get_user_model().objects.create_user(**params)
 
 
@@ -109,7 +109,7 @@ class PrivateRecipeApiTests(TestCase):
     def test_create_recipe(self):
         """Test creating a recipe."""
         payload = {
-            'title': 'sample recipe',
+            'title': 'Sample recipe',
             'time_minutes': 30,
             'price': Decimal('5.99'),
         }
@@ -141,10 +141,10 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(recipe.user, self.user)
 
     def test_full_update(self):
-        """Test full update of recipe"""
+        """Test full update of recipe."""
         recipe = create_recipe(
             user=self.user,
-            title='Sanple recipe title',
+            title='Sample recipe title',
             link='https://example.com/recipe.pdf',
             description='Sample recipe description',
         )
@@ -152,7 +152,7 @@ class PrivateRecipeApiTests(TestCase):
         payload = {
             'title': 'New recipe title',
             'link': 'https://example.com/new-recipe.pdf',
-            'description': 'New recipe description',
+            'description': 'New recipe description.',
             'time_minutes': 10,
             'price': Decimal('2.50'),
         }
@@ -199,12 +199,12 @@ class PrivateRecipeApiTests(TestCase):
         self.assertTrue(Recipe.objects.filter(id=recipe.id).exists())
 
     def test_create_recipe_with_new_tags(self):
-        """Test craeting a recipe with new tags."""
+        """Test creating a recipe with new tags."""
         payload = {
             'title': 'Thai Prawn Curry',
             'time_minutes': 30,
             'price': Decimal('2.50'),
-            'tags': [{'name': 'Thai'}, {'name': 'Dinner'}]
+            'tags': [{'name': 'Thai'}, {'name': 'Dinner'}],
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -284,7 +284,7 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(recipe.tags.count(), 0)
 
-    def create_recipe_with_new_ingredients(self):
+    def test_create_recipe_with_new_ingredients(self):
         """Test creating a recipe with new ingredients."""
         payload = {
             'title': 'Cauliflower Tacos',

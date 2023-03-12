@@ -48,7 +48,7 @@ class PrivateIngredientsApiTests(TestCase):
         self.client.force_authenticate(self.user)
 
     def test_retrieve_ingredients(self):
-        """Test retrieveing a list of ingredients."""
+        """Test retrieving a list of ingredients."""
         Ingredient.objects.create(user=self.user, name='Kale')
         Ingredient.objects.create(user=self.user, name='Vanilla')
 
@@ -85,7 +85,7 @@ class PrivateIngredientsApiTests(TestCase):
         self.assertEqual(ingredient.name, payload['name'])
 
     def test_delete_ingredient(self):
-        """Testing deleting an ingredient."""
+        """Test deleting an ingredient."""
         ingredient = Ingredient.objects.create(user=self.user, name='Lettuce')
 
         url = detail_url(ingredient.id)
