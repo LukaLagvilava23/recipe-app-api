@@ -120,7 +120,7 @@ class PrivateTagsApiTests(TestCase):
         self.assertNotIn(s2.data, res.data)
 
     def test_filtered_tags_unique(self):
-        """Test filtered tags return a unique list."""
+        """Test filtered tags returns a unique list."""
         tag = Tag.objects.create(user=self.user, name='Breakfast')
         Tag.objects.create(user=self.user, name='Dinner')
         recipe1 = Recipe.objects.create(

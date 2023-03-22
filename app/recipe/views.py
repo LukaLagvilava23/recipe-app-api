@@ -31,12 +31,12 @@ from recipe import serializers
             OpenApiParameter(
                 'tags',
                 OpenApiTypes.STR,
-                description='Comma seperated list of IDs to filter',
+                description='Comma separated list of IDs to filter',
             ),
             OpenApiParameter(
                 'ingredients',
                 OpenApiTypes.STR,
-                description='Comma Seperated list of ingredient IDs to filter',
+                description='Comma Separated list of ingredient IDs to filter',
             )
         ]
     )
@@ -58,11 +58,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
         ingredients = self.request.query_params.get('ingredients')
         queryset = self.queryset
         if tags:
-            tags_ids = self._params_to_ints(tags)
-            queryset = queryset.filter(tags__id__in=tags_ids)
+            tag_ids = self._params_to_ints(tags)
+            queryset = queryset.filter(tags__id__in=tag_ids)
         if ingredients:
-            ingredients_ids = self._params_to_ints(ingredients)
-            queryset = queryset.filter(ingredients__id__in=ingredients_ids)
+            ingredient_ids = self._params_to_ints(ingredients)
+            queryset = queryset.filter(ingredients__id__in=ingredient_ids)
 
         return queryset.filter(
             user=self.request.user
@@ -100,8 +100,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
             OpenApiParameter(
                 'assigned_only',
                 OpenApiTypes.INT, enum=[0, 1],
-                description='Filter by items assigned to recipes.'
-            )
+                description='Filter by items assigned to recipes.',
+            ),
         ]
     )
 )
